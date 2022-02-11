@@ -51,10 +51,9 @@ public class Utleieselskap {
 	 * @param tlf
 	 * @param kortnummer
 	 */
-	public void nyReservasjon(LocalDateTime resStart, LocalDateTime resSlutt, UtleieKontor utleieKontor, Bil bil, Adresse adresse, String fornavn, String etternavn, String tlf, 
-			String kortnummer) {
+	public void nyReservasjon(LocalDateTime resStart, LocalDateTime resSlutt, UtleieKontor utleieKontor, Bil bil, Kunde kunde) {
 		
-		ReservasjonUtil.opprettReservasjon(resStart, resSlutt, utleieKontor, bil, adresse, fornavn, etternavn, tlf, kortnummer, this);
+		ReservasjonUtil.opprettReservasjon(resStart, resSlutt, utleieKontor, bil, kunde, this);
 	}
 
 	
@@ -68,13 +67,15 @@ public class Utleieselskap {
 	 * @param kortNummer
 	 * @return
 	 */
-	public Kunde finnKunde(String fornavn, String etternavn, Adresse adresse, String tlf, 
-			String kortNummer) {
+	
+	public void leggTilKunde(Kunde k) {
+		kunder.put(k.getTlf(), k);
+	}
+	public Kunde finnKunde(String tlf) {
 		
 		Kunde kunde = kunder.get(tlf);
 		if(kunde == null) {
-			kunde = new Kunde(adresse, fornavn, etternavn, tlf, kortNummer);
-			kunder.put(tlf, kunde);
+			return null;
 		}
 		
 		return kunde;

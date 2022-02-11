@@ -13,11 +13,10 @@ import utLeieBil.Utleieselskap;
 public class ReservasjonUtil {
 	
 	public static void opprettReservasjon(LocalDateTime resStart, LocalDateTime resSlutt, UtleieKontor utleieKontor, Bil bil,
-			Adresse adresse, String fornavn, String etternavn, String tlf, 
-			String kortnummer, Utleieselskap utleieselskap) {
+			Kunde kunde, Utleieselskap utleieselskap) {
 		
 
-		Kunde kunde = utleieselskap.finnKunde(fornavn, etternavn, adresse, tlf, kortnummer);
+		
 		opprettReservasjon(resStart, resSlutt, utleieKontor, kunde, bil,
 			utleieselskap);
 	}

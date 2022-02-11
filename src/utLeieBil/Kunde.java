@@ -37,6 +37,10 @@ public class Kunde {
 	public double getSaldo() {
 		return utestaaendeSaldo;
 	}
+	
+	public String getTlf() {
+		return tlfNr;
+	}
 
 	@Override
 	public String toString() {
