@@ -107,4 +107,12 @@ public class Reservasjon {
 		this.sluttKM = sluttKM;
 	}
 	
+	public int getId() {
+		return resID;
+	}
+	
+	public ResStatus getStatus() {
+		return status;
+	}
+	
 }

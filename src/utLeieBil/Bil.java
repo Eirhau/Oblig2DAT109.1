@@ -49,12 +49,10 @@ public class Bil {
 	public boolean ledig(LocalDateTime start, LocalDateTime slutt) {
 
 		for (Reservasjon res : reservasjoner) {
-
-			if (start.isAfter(res.getHenteTid()) && start.isBefore(res.getLeveringTid())) {
-				return false;
-			}
-
-			if (slutt.isAfter(res.getHenteTid()) && slutt.isBefore(res.getLeveringTid())) {
+			
+			if(start.isAfter(res.getResSlutt()) || slutt.isBefore(res.getResStart())) {
+				
+			} else {
 				return false;
 			}
 		}

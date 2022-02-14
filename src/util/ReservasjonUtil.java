@@ -12,6 +12,7 @@ import utLeieBil.Utleieselskap;
 
 public class ReservasjonUtil {
 	
+	
 	public static void opprettReservasjon(LocalDateTime resStart, LocalDateTime resSlutt, UtleieKontor utleieKontor, Bil bil,
 			Kunde kunde, Utleieselskap utleieselskap) {
 		

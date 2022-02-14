@@ -30,6 +30,7 @@ public class Utleieselskap {
 		this.firmaAdresse = firmaAdresse;
 		utleieKontorer = new ArrayList<UtleieKontor>();
 		kunder = new HashMap<String, Kunde>();
+		reservasjoner = new ArrayList<Reservasjon>();
 		id = 0;
 		
 	}
@@ -117,6 +118,11 @@ public class Utleieselskap {
 		
 	}
 	
+	public void leggTilKontor(UtleieKontor kont) {
+		utleieKontorer.add(kont);
+	}
+	
+	
 	/**
 	 * Legger til bil på ønsket kontor
 	 * @param kontor
@@ -129,10 +135,35 @@ public class Utleieselskap {
 		finnKontor(kontorIdx).leggTilBil(new Bil(regNr, merke, farge, gruppe));
 	}
 	
-	private UtleieKontor finnKontor(int kontorIdx) {
-		for (int i = 0; i < utleieKontorer.size(); i++)
-			if (utleieKontorer.get(i).getIdx() == kontorIdx)
-				return utleieKontorer.get(i);
+	/**
+	 * Legger til bil på ønsket kontor
+	 * @param kontorIdx
+	 * @param b
+	 */
+	public void leggTilBil(int kontorIdx, Bil b) {
+		finnKontor(kontorIdx).leggTilBil(b);
+	}
+	
+	/**
+	 * Finner kontor utifra id ellers null
+	 * @param kontorIdx
+	 * @return Kontor//null
+	 */
+	public UtleieKontor finnKontor(int kontorIdx) {
+		for(UtleieKontor kont : utleieKontorer) {
+			if(kont.getIdx() == kontorIdx) {
+				return kont;
+			}
+		}
+		return null;
+	}
+	
+	public Reservasjon finnReservasjon(int id) {
+		for(Reservasjon res : reservasjoner) {
+			if(res.getId() == id) {
+				return res;
+			}
+		}
 		return null;
 	}
 
@@ -141,7 +172,7 @@ public class Utleieselskap {
 	 * @param kontor
 	 * @param start
 	 * @param slutt
-	 * @return
+	 * @return Liste biler ledige
 	 */
 	public List<Bil> sokBiler(UtleieKontor kontor, LocalDateTime start, LocalDateTime slutt) {
 		return kontor.getLedige(start, slutt);

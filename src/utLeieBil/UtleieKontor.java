@@ -48,21 +48,18 @@ public class UtleieKontor {
 	 * @return
 	 */
 	public List<Bil> getLedige(LocalDateTime start, LocalDateTime slutt) {
-		List<Bil> ledige = new ArrayList<>(biler);
+		List<Bil> ledige = new ArrayList<>();
 		
-		
-		List<Reservasjon> reservasjonerAkt;
-		for(Bil b : ledige) {
-			reservasjonerAkt = b.getReservasjoner();
+
+		for(Bil b : biler) {
 			
-			for(Reservasjon res : reservasjonerAkt) {
-				
-				if (slutt.isBefore(res.getResStart()) || start.isAfter(res.getResSlutt()))
-					continue;
-				ledige.remove(b);
+			if(b.ledig(start, slutt)) {
+				ledige.add(b);
 				
 			}
+			
 		}
+		
 		
 		return ledige;
 	}
